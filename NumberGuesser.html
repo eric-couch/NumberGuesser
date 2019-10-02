@@ -5,16 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Number Guesser</title>
+    <style>
+      #instructions {
+        height: 60px;
+        width: 300px;
+      }
+      .won {
+        color: red;
+      }
+    </style>
     <script>
+      let numOfGuesses = 0;
       document.addEventListener("DOMContentLoaded", function() {
+        // DOMContentLoaded fires once everything in the page has loaded
         let rndNum = Math.ceil(Math.random() * 100);
         document
-          .getElementById("btnGuess")
+          .getElementById("btnGuess") // use getElementById to get something in the page by it's id attribute
           .addEventListener("click", function() {
+            numOfGuesses++;
             let guess = document.getElementById("guess").value;
             let output = document.getElementById("output");
+            output.innerHTML += "Guess Number " + numOfGuesses + "<BR>";
             if (rndNum == guess) {
-              output.innerHTML += "You won!!<BR>";
+              output.innerHTML +=
+                "<span class='won'>You won!!<span> It only took you " +
+                numOfGuesses +
+                " guesses.";
+              ("<BR>");
             } else {
               if (guess > rndNum) {
                 output.innerHTML += guess + " Was Too High!<BR>";
@@ -22,6 +39,7 @@
                 output.innerHTML += guess + " Was Too Low!<BR>";
               }
             }
+            output.innerHTML += "<hr>";
           });
         // Add instructions for the user
         // Add something that counts the number of guesses
@@ -32,6 +50,10 @@
     </script>
   </head>
   <body>
+    <div id="instructions">
+      This is the Number Guessing game. The number to guess has been set. Pick a
+      number between 1 and 100.
+    </div>
     <input type="text" name="guess" id="guess" /><button id="btnGuess">
       Guess
     </button>
