@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Number Guesser</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        let rndNum = Math.ceil(Math.random() * 100);
+        document
+          .getElementById("btnGuess")
+          .addEventListener("click", function() {
+            let guess = document.getElementById("guess").value;
+            let output = document.getElementById("output");
+            if (rndNum == guess) {
+              output.innerHTML += "You won!!<BR>";
+            } else {
+              if (guess > rndNum) {
+                output.innerHTML += guess + " Was Too High!<BR>";
+              } else {
+                output.innerHTML += guess + " Was Too Low!<BR>";
+              }
+            }
+          });
+        // Add instructions for the user
+        // Add something that counts the number of guesses
+        // add functionality that tells them if they are hot or cold
+        // add some colors to the messages
+        // give them the option to play again
+      });
+    </script>
+  </head>
+  <body>
+    <input type="text" name="guess" id="guess" /><button id="btnGuess">
+      Guess
+    </button>
+    <div id="output"></div>
+  </body>
+</html>
