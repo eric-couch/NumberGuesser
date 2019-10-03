@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Task List</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document
+          .getElementById("addTask")
+          .addEventListener("click", function() {
+            let task = prompt("Enter Task");
+            let newTaskDiv = document.createElement("div");
+            let chkBox = document.createElement("input");
+            chkBox.type = "checkbox";
+            chkBox.addEventListener("change", function() {
+              if (this.checked) {
+                this.nextElementSibling.style.textDecoration = "line-through";
+              } else {
+                this.nextElementSibling.style.textDecoration = "none";
+              }
+            });
+            newTaskDiv.appendChild(chkBox);
+            let txtTask = document.createElement("span");
+            txtTask.innerText = task;
+            newTaskDiv.appendChild(txtTask);
+            document.body.append(newTaskDiv);
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <button id="addTask">Add Task</button>
+  </body>
+</html>
