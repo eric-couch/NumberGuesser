@@ -13,6 +13,14 @@
       .won {
         color: red;
       }
+      .hot {
+        background-color: maroon;
+        color: white;
+      }
+      .cold {
+        background-color: midnightblue;
+        color: white;
+      }
     </style>
     <script>
       let numOfGuesses = 0;
@@ -31,15 +39,33 @@
                 "<span class='won'>You won!!<span> It only took you " +
                 numOfGuesses +
                 " guesses.";
-              ("<BR>");
+              output.innerHTML +=
+                "<button onclick='window.location.reload()'>play again</button>";
             } else {
               if (guess > rndNum) {
-                output.innerHTML += guess + " Was Too High!<BR>";
+                output.innerHTML += guess + " Was Too High!";
               } else {
-                output.innerHTML += guess + " Was Too Low!<BR>";
+                output.innerHTML += guess + " Was Too Low!";
+              }
+              if (Math.abs(guess - rndNum) < 5) {
+                output.innerHTML +=
+                  " and you are <span class='hot'>very hot!</span>";
+              } else if (Math.abs(guess - rndNum) < 10) {
+                output.innerHTML +=
+                  " and you are <span class='hot'>moderately hot!</span>";
+              } else if (Math.abs(guess - rndNum) < 20) {
+                output.innerHTML +=
+                  " and you are <span class='hot'>warm!</span>";
+              } else if (Math.abs(guess - rndNum) < 30) {
+                output.innerHTML +=
+                  " and you are <span class='cold'>cold!</span>";
+              } else {
+                output.innerHTML +=
+                  " and you are <span class='cold'>very cold!</span>";
               }
             }
-            output.innerHTML += "<hr>";
+
+            output.innerHTML += "<br><hr>";
           });
         // Add instructions for the user
         // Add something that counts the number of guesses
